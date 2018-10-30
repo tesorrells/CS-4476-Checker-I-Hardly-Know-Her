@@ -1,0 +1,6 @@
+We had initially planned on using edge detection to build the grid for the pieces. The images show that finding the edges is
+actually fairly trivial, but attempting to create a grid, or rather an 8x8 matrix for the pieces may not actually be useful.
+Our detection of the pieces themselves can be used instead to detect and create the grid for the piece locations that the 
+checkers AI will use. In the gridEdgeDetection we can see it produces a very obvious board, but turning this data into an 8x8 matrix
+with locations of pieces is less ideal as we can see in the pictures and our circle detection finds them much easier. In the future
+we may combine these two to build the grid.

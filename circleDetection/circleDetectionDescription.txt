@@ -1,0 +1,18 @@
+Approach:
+The problem we define is to detect circular checkers pieces from a board given an input image. The steps we use to do this are as follows:
+1. Equalize the histogram of a grayscale image to normalize the brightness and increase the contrast of the image.
+2. Use the HoughCircles method in OpenCV to find cirlces in a grayscale image from the previous step using the Hough Transform, specifically, the HOUGH_GRADIENT in OpenCV.
+3. Using the previous step, we draw the appropriate circles for the output of the Hough Transform in the previous step.
+
+Experiment & Results:
+The ability to detect circular checkers pieces is an extremely critical part of our approach. Using the in-built HoughCircles method in OpenCV proved challenging and the parameters within HoughCircles required tuning to appropriately classify circles with the input images given from a dataset of photos taken on a cellphone. As discussed previously, this method for detecting circles needed to be flawless since the purpose of our project is to predict the next move given the current game state. If the present game state cannot be fully understood, our approach is meaningless. After tuning the parameters on an input image given as IMG_4075.png, the model was able to classify 100% of the checkers pieces in the image.
+
+Qualitative Results:
+See circleDetection.png for the result of the approach to circle detection.
+
+Conclusion and future work:
+The model succesfully classifies circles given an input image of a checkers board. Future work will involve distiguishing the checkers pieces on the basis of player type, which will involve differentiating the color of the checkers pieces. Futhermore, our work will involve studying ways to determine whether or not a piece has reached the end of the board and must be crowned. For crowning, we will study adding additional colors to the piece, adding a symbol to the piece, and experiment with the checkers AI previously referenced.
+
+References:
+https://docs.opencv.org/2.4/modules/imgproc/doc/histograms.html?highlight=equalizehist
+https://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html

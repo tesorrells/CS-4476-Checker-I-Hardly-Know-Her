@@ -1,0 +1,7 @@
+Approach: 
+We wanted to create a dataset of checkers board that consisted of:
+1. Real game states/board configurations
+2. Multiple viewing angles of game states.
+
+Data collection:
+10 different board configurations with 5 viewing angles each resulted in 50 images of checkers boards. These viewing angles were meant to be possible viewing angles a player might view the board from and still recognize the game state, including a view from a seated position and from a top down view of the board. These images were collected from an iPhone 6 and are of size 3264 x 2448 pixels. We may decide to expand our dataset to include more complex game states and more viewing angles in the future.

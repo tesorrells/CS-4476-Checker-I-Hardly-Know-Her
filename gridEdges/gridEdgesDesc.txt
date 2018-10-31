@@ -17,4 +17,5 @@ Qualitative results:
 See folder 'gridEdges' for output images of each step.
 
 Conclusion and future work:
-We will either need to find a proper way to create the matrix with the image or move on to the pure circle detection method using distance between pieces to assign places in the matrix.
+We will either need to find a proper way to create the matrix with the image or move on to the pure circle detection method using 
+distance between pieces to assign places in the matrix.

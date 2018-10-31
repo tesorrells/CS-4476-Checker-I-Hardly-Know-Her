@@ -1,3 +1,6 @@
+Link to example outputs:
+https://drive.google.com/open?id=13Ot5v_GkostPagRuTcG8NcMFGbOVhdxe
+
 Approach: 
 The problem to solve in this step is to detect the checkers board in the input image and obtain a bird's eye view of it.
 The steps to do this using OpenCV are:
@@ -14,7 +17,7 @@ As expected, when an image does not have the board as the largest contour, we ar
 However, when the assumption is satisfied, the board is detected successfully. (See detectBoard\board1_4072.JPG or detectBoard\board1_4073.JPG output for each step in our approach.)
 
 Qualitative results:
-See folder 'detectBoard' for output images of each step.
+See link at the top for output images of each step.
 
 Conclusion and future work:
 In the future, I would like to find a way to remove our assumption of the board being the largest contour in the input image.

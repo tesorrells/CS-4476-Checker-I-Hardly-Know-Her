@@ -1,0 +1,26 @@
+Approach: 
+The problem to solve in this step is to detect the checkers board in the input image and obtain a bird's eye view of it.
+The steps to do this using OpenCV are:
+1) Gray and blur input image
+2) Find edges using Canny edge detection
+3) Find contours in the image
+4) Find largest contour with 4 sides i.e. the board
+5) Transform the board using warp perspective
+One important assumption this approach takes is that the checkers board is the biggest contour in the input image. This is necessary in step 4, where we assume that the largest contour with 4 sides is the checkers board.
+
+Experiments and results:
+I tested this approach on several images in the 'checkers' directory.
+As expected, when an image does not have the board as the largest contour, we are unable to detect the board successfully. (See detectBoard\board1_4071.JPG output for each step.)
+However, when the assumption is satisfied, the board is detected successfully. (See detectBoard\board1_4072.JPG or detectBoard\board1_4073.JPG output for each step in our approach.)
+
+Qualitative results:
+See folder 'detectBoard' for output images of each step.
+
+Conclusion and future work:
+In the future, I would like to find a way to remove our assumption of the board being the largest contour in the input image.
+
+Reference:
+https://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html
+https://docs.opencv.org/2.4/doc/tutorials/imgproc/gausian_median_blur_bilateral_filter/gausian_median_blur_bilateral_filter.html
+https://docs.opencv.org/2.4/doc/tutorials/imgproc/imgtrans/canny_detector/canny_detector.html
+https://docs.opencv.org/2.4/doc/tutorials/imgproc/shapedescriptors/find_contours/find_contours.html

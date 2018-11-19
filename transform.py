@@ -25,13 +25,12 @@ def four_point_transform(img, points):
     bottomHeight = int(np.sqrt(((ul[0] - bl[0]) ** 2) + ((ul[1] - bl[1]) ** 2)))
     maxHeight = max(upperHeight, bottomHeight)
 
-    dst = np.array([
-        [0, 0],
-        [maxWidth - 1, 0],
-        [maxWidth - 1, maxHeight - 1],
-        [0, maxHeight - 1]], dtype = "float32")
+    dest = np.array([[0, 0],
+                    [maxWidth - 1, 0],
+                    [maxWidth - 1, maxHeight - 1],
+                    [0, maxHeight - 1]], dtype = "float32")
 
-    M = cv2.getPerspectiveTransform(rectangle, dst)
-    warped = cv2.warpPerspective(img, M, (maxWidth, maxHeight))
+    matrix = cv2.getPerspectiveTransform(rectangle, dest)
+    transformed = cv2.warpPerspective(img, matrix, (maxWidth, maxHeight))
 
-    return warped
+    return transformed

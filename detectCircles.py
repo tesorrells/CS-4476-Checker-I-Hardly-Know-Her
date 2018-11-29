@@ -11,7 +11,7 @@ def detectCircles(directory, showImage = True, rectangle = False):
 	blackCenters = []
 	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 15, param2 = 55, minRadius = 10, maxRadius = 40)))
 	for i in circles[0,:]:
-	    chunk = img2[i[1] - round(i[2]/2): i[1] + round(i[2]/2), i[0] - round(i[2]/2): i[0] + round(i[2]/2), :]
+	    chunk = img2[i[1] - int(i[2]/2): i[1] + int(i[2]/2), i[0] - int(i[2]/2): i[0] + int(i[2]/2), :]
 	    pixels = chunk[:][:]
 	    blue, red, green = 0, 0, 0
 	    for value in pixels[2]:
@@ -22,7 +22,7 @@ def detectCircles(directory, showImage = True, rectangle = False):
 	    green /= len(pixels[2])
 	    red /= len(pixels[2])
 	    if rectangle:
-	    	cv2.rectangle(img2, (i[0] - round(i[2]/2), i[1] - round(i[2]/2)), (i[0] + round(i[2]/2), i[1] + round(i[2]/2)), (255, 255, 0), 1)
+	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 1)
 	    if 2 * red / (1.0 * blue + green) > 1.5:
 	    	cv2.circle(img2, (i[0], i[1]), i[2], (100,100,255), 5)
 	    	redCenters.append((i[0], i[1]))
@@ -45,7 +45,7 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 	blackCenters = []
 	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 15, param2 = 55, minRadius = 10, maxRadius = 40)))
 	for i in circles[0,:]:
-	    chunk = img2[i[1] - round(i[2]/2): i[1] + round(i[2]/2), i[0] - round(i[2]/2): i[0] + round(i[2]/2), :]
+	    chunk = img2[i[1] - int(i[2]/2): i[1] + int(i[2]/2), i[0] - int(i[2]/2): i[0] + int(i[2]/2), :]
 	    pixels = chunk[:][:]
 	    blue, red, green = 0, 0, 0
 	    for value in pixels[2]:
@@ -56,7 +56,7 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 	    green /= len(pixels[2])
 	    red /= len(pixels[2])
 	    if rectangle:
-	    	cv2.rectangle(img2, (i[0] - round(i[2]/2), i[1] - round(i[2]/2)), (i[0] + round(i[2]/2), i[1] + round(i[2]/2)), (255, 255, 0), 1)
+	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 1)
 	    if 2 * red / (1.0 * blue + green) > 1.5:
 	    	cv2.circle(img2, (i[0], i[1]), i[2], (100,100,255), 5)
 	    	redCenters.append((i[0], i[1]))

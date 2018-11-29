@@ -9,7 +9,7 @@ def detectCircles(directory, showImage = True, rectangle = False):
 	circleCenters = []
 	redCenters = []
 	blackCenters = []
-	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 15, param2 = 55, minRadius = 10, maxRadius = 40)))
+	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 20, param2 = 47, minRadius = 10, maxRadius = 40)))
 	for i in circles[0,:]:
 	    chunk = img2[i[1] - int(i[2]/2): i[1] + int(i[2]/2), i[0] - int(i[2]/2): i[0] + int(i[2]/2), :]
 	    pixels = chunk[:][:]
@@ -43,7 +43,7 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 	circleCenters = []
 	redCenters = []
 	blackCenters = []
-	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 15, param2 = 55, minRadius = 10, maxRadius = 40)))
+	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 20, param2 = 47, minRadius = 10, maxRadius = 40)))
 	for i in circles[0,:]:
 	    chunk = img2[i[1] - int(i[2]/2): i[1] + int(i[2]/2), i[0] - int(i[2]/2): i[0] + int(i[2]/2), :]
 	    pixels = chunk[:][:]

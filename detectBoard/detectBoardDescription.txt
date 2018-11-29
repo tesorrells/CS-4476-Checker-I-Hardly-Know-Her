@@ -9,6 +9,7 @@ The steps to do this using OpenCV are:
 3) Find contours in the image
 4) Find largest contour with 4 sides i.e. the board
 5) Transform the board using warp perspective
+6) Reshape warped board to a square.
 One important assumption this approach takes is that the checkers board is the biggest contour in the input image. This is necessary in step 4, where we assume that the largest contour with 4 sides is the checkers board.
 
 Experiments and results:

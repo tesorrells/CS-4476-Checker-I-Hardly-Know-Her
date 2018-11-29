@@ -11,7 +11,7 @@ def is_valid_file(parser, arg):
     else:
         return arg
 
-# Construct the argument parse and parse the arguments
+# Construct the argument parse and parse the argumentsa
 parser = argparse.ArgumentParser()
 requiredNamed = parser.add_argument_group('required arguments')
 requiredNamed.add_argument("-i", "--image", required = True, help = "path to the image file like checkers/board1/IMG_4073.JPG", type = lambda x: is_valid_file(parser, x))

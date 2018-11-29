@@ -103,7 +103,7 @@ def buildBoard(redCenters, blackCenters):
 
 	print(circleGrid)
 
-r, b = detectCircles("board.png", showImage = True, rectangle = False)
-buildBoard(r, b)
+# r, b = detectCircles("board.png", showImage = True, rectangle = False)
+# buildBoard(r, b)
 # detectCircles("circleDetection/IMG_4075.png", True)
 #detectCircles("checkers/board1/IMG_4075.JPG", True)

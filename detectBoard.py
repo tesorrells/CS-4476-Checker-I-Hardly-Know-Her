@@ -64,6 +64,6 @@ def detectBoard(image):
         # cv2.imshow("Contours", contouredImage)
 
         # Could not detect a board in the image.
-        print "Could not detect board."
+        print("Could not detect board.")
         cv2.waitKey(0)
 

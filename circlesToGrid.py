@@ -29,10 +29,13 @@ def buildBoard(redCenters, blackCenters):
 			redY = abs(red[1] - space[index][1])
 			if redX <= 30 and redY <= 30:
 				circleGrid[index] = 1
+				redCenters.remove(red)
 		for black in blackCenters:
 			blackX = abs(black[0] - space[index][0])
 			blackY = abs(black[1] - space[index][1])
 			if blackX <= 30 and blackY <= 30:
-				circleGrid[index] = 2
+				circleGrid[index[0][1]] = 2
+				blackCenters.remove(black)
 
 	print(circleGrid)
+	return circleGrid

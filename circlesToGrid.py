@@ -1,5 +1,12 @@
+def Remove(duplicate):
+    final_list = []
+    for num in duplicate:
+        if num not in final_list:
+            final_list.append(num)
+    return final_list
+
 def buildBoard(redCenters, blackCenters):
-	currentPos = [62, 62]
+	currentPos = [62.5, 62.5]
 	redPositions = []
 	blackPositions = []
 
@@ -13,7 +20,7 @@ def buildBoard(redCenters, blackCenters):
 					redPositions.append([x , y ])
 					redCenters.remove(red)
 				else:
-					currentPos = [62 * x, 62 * y]
+					currentPos = [62.5 * x, 62.5 * y]
 			x += 1
 		x = 1
 		y += 1
@@ -28,11 +35,13 @@ def buildBoard(redCenters, blackCenters):
 					blackPositions.append([x , y ])
 					blackCenters.remove(black)
 				else:
-					currentPos = [62 * x, 62 * y]
+					currentPos = [62.5 * x, 62.5 * y]
 			x += 1
 		x = 1
 		y += 1
 
+	redPositions = Remove(redPositions)
+	blackPositions = Remove(blackPositions)
 
 	print(redPositions)
 	print(blackPositions)

@@ -23,6 +23,7 @@ def detectCircles(directory, showImage = True, rectangle = False):
 	    red /= len(pixels[2])
 	    if rectangle:
 	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 1)
+	    cv2.circle(img2, (i[0], i[1]), i[2], (0,255,0), 5)
 	    if 2 * red / (1.0 * blue + green) > 1.5:
 	    	cv2.circle(img2, (i[0], i[1]), i[2], (100,100,255), 5)
 	    	redCenters.append((i[0], i[1]))
@@ -70,40 +71,4 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 		cv2.destroyAllWindows()
 	return redCenters, blackCenters
 
-def buildBoard(redCenters, blackCenters):
-	print("Building Grid")
-	value = np.empty((), dtype=object)
-	value[()] = (0, 0)
-	boardGrid = np.full((8, 8), value, dtype=object)
-	circleGrid = np.full((8, 8), 0, dtype=object)
-
-	i = 1
-	j = 1
-	for space in boardGrid:
-		while i < 9:
-			while j < 9:
-				boardGrid[i-1, j-1] = [int(62 * i), int(62 * j)]
-				j += 1
-			i += 1
-			j = 1
-
-	#print(boardGrid)
-
-	for index, space in enumerate(boardGrid):
-		for red in redCenters:
-			redX = abs(red[0] - space[index][0])
-			redY = abs(red[1] - space[index][1])
-			if redX <= 30 and redY <= 30:
-				circleGrid[index] = 1
-		for black in blackCenters:
-			blackX = abs(black[0] - space[index][0])
-			blackY = abs(black[1] - space[index][1])
-			if blackX <= 30 and blackY <= 30:
-				circleGrid[index] = 2
-
-	print(circleGrid)
-
-# r, b = detectCircles("board.png", showImage = True, rectangle = False)
-# buildBoard(r, b)
-# detectCircles("circleDetection/IMG_4075.png", True)
-#detectCircles("checkers/board1/IMG_4075.JPG", True)
+# detectCircles("board.png", True, True)

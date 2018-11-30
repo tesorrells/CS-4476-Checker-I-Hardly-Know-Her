@@ -1,17 +1,14 @@
 Approach:
 The problem we define is to detect circular checkers pieces from a board given an input image. The steps we use to do this are as follows:
 1. OpenCV's medianBlur function is used to slightly blur the image. 
-2. We use the HoughCircles method in OpenCV to find cirlces in a grayscale image from the previous step using the Hough Transform, specifically, the HOUGH_GRADIENT in OpenCV.
-3. We then use the center points and the radius to analyze the pixel values for the a circle 1/2 the radius of the actual circle. Using the average red pixel value in this circle, we can determine whether or not the circle is a red piece or a black piece. 
+2. We use the HoughCircles method in OpenCV to find circles in a grayscale image from the previous step using the Hough Transform, specifically, the HOUGH_GRADIENT in OpenCV.
+3. We then use the center points and the radius to analyze the pixel values for a square, with a length value of the circle's radius, sharing the circle's center point. Using a ratio of red to blue and green pixels, we can determine whether or not the circle is a red piece or a black piece. 
 
 Experiment & Results:
 The ability to detect circular checkers pieces is an extremely critical part of our approach. Using the in-built HoughCircles method in OpenCV proved challenging and the parameters within HoughCircles required tuning to appropriately classify circles with the input images given from a dataset of photos taken on a cellphone. As discussed previously, this method for detecting circles needed to be flawless since the purpose of our project is to predict the next move given the current game state. If the present game state cannot be fully understood, our approach is meaningless. After tuning the parameters on an input image given as IMG_4075.JPG, the model was able to classify 100% of the checkers pieces in the image. Furthermore, the model successfully classifies the color of the pieces as red or black pieces. 
 
-Qualitative Results:
-See circleDetection.png for the result of the approach to circle detection.
-
 Conclusion and future work:
-The model succesfully classifies circles and the color of the circles given an input image of a checkers board. Future work can be done to distinguish "kinged" pieces by placing a circular piece of colored paper that is blue or green on a kinged piece. Given that we already have the average BGR values for a circle, this would be trivial to implement and was not thoroughly tested.
+The model successfully classifies circles and the color of the circles given an input image of a checkers board. Future work can be done to distinguish "kinged" pieces by placing a circular piece of colored paper that is blue or green on a kinged piece. Given that we already have the average BGR values for a circle, this would be trivial to implement and was not thoroughly tested although a method similar to testing the ratio of color values coudl be used.
 
 References:
 https://docs.opencv.org/2.4/modules/imgproc/doc/histograms.html?highlight=equalizehist

@@ -1,11 +1,15 @@
 from detectBoard import detectBoard
 from detectCircles import detectCirclesImages
+# from circlesToGrid import buildBoard
+from SingleMove import SingleMove
+from pixelToCheckerboard import pixelToCheckerboard
 import cv2
 import argparse
 import sys
 import os.path
 import imutils
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 # FILE INPUT AND VALIDATION FOR ORIGINAL IMAGE
@@ -30,5 +34,14 @@ normalized_board = detectBoard(image)
 # cv2.imshow("Original Board", imutils.resize(image, 500))
 # cv2.imshow("Warped Board", normalized_board)
 # cv2.waitKey(0)
-
-_, _ = detectCirclesImages(normalized_board, True, False)
+red, black = detectCirclesImages(normalized_board, True, False)
+red, black = pixelToCheckerboard(red, black)
+for i in red: 
+	i = list(i)
+	i.append(False)
+for i in black: 
+	i = list(i)
+	i.append(False)
+red = np.array(red)
+black = np.array(black)
+checkers = SingleMove(red, "red", black, "black")

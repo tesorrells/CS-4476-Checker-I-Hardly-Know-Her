@@ -56,7 +56,7 @@ def detectBoard(image):
         # cv2.imshow("Board Resized", board)
         # cv2.waitKey(0)
 
-        cv2.imwrite("board.png", board)
+        #cv2.imwrite("board.png", board)
         return board
 
     else:

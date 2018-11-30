@@ -9,7 +9,7 @@ def detectCircles(directory, showImage = True, rectangle = False):
 	circleCenters = []
 	redCenters = []
 	blackCenters = []
-	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 20, param2 = 47, minRadius = 10, maxRadius = 40)))
+	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 20, param2 = 45, minRadius = 10, maxRadius = 40)))
 	for i in circles[0,:]:
 	    chunk = img2[i[1] - int(i[2]/2): i[1] + int(i[2]/2), i[0] - int(i[2]/2): i[0] + int(i[2]/2), :]
 	    pixels = chunk[:][:]
@@ -22,13 +22,13 @@ def detectCircles(directory, showImage = True, rectangle = False):
 	    green /= len(pixels[2])
 	    red /= len(pixels[2])
 	    if rectangle:
-	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 1)
+	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 3)
 	    cv2.circle(img2, (i[0], i[1]), i[2], (0,255,0), 5)
 	    if 2 * red / (1.0 * blue + green) > 1.5:
-	    	cv2.circle(img2, (i[0], i[1]), i[2], (100,100,255), 5)
+	    	#cv2.circle(img2, (i[0], i[1]), i[2], (100,100,255), 5)
 	    	redCenters.append((i[0], i[1]))
 	    else:
-	    	cv2.circle(img2, (i[0], i[1]), i[2], (255, 255, 0), 5)
+	    	#cv2.circle(img2, (i[0], i[1]), i[2], (255, 255, 0), 5)
 	    	blackCenters.append((i[0], i[1]))
 	    circleCenters.append((i[0], i[1]))
 	if showImage:
@@ -44,7 +44,7 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 	circleCenters = []
 	redCenters = []
 	blackCenters = []
-	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 20, param2 = 47, minRadius = 10, maxRadius = 40)))
+	circles = np.uint16(np.around(cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, 1, 10, param1 = 20, param2 = 45, minRadius = 10, maxRadius = 40)))
 	for i in circles[0,:]:
 	    chunk = img2[i[1] - int(i[2]/2): i[1] + int(i[2]/2), i[0] - int(i[2]/2): i[0] + int(i[2]/2), :]
 	    pixels = chunk[:][:]
@@ -57,7 +57,7 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 	    green /= len(pixels[2])
 	    red /= len(pixels[2])
 	    if rectangle:
-	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 1)
+	    	cv2.rectangle(img2, (i[0] - int(i[2]/2), i[1] - int(i[2]/2)), (i[0] + int(i[2]/2), i[1] + int(i[2]/2)), (255, 255, 0), 5)
 	    if 2 * red / (1.0 * blue + green) > 1.5:
 	    	cv2.circle(img2, (i[0], i[1]), i[2], (100,100,255), 5)
 	    	redCenters.append((i[0], i[1]))
@@ -71,4 +71,4 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 		cv2.destroyAllWindows()
 	return redCenters, blackCenters
 
-# detectCircles("board.png", True, True)
+detectCircles("board.png", True, True)

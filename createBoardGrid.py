@@ -326,7 +326,7 @@ def loadImage(filepath):
     return img
 
 
-def findChessboard(img, min_pts_needed=15, max_pts_needed=25):
+def findCheckerBoard(img, min_pts_needed=15, max_pts_needed=25):
     blur_img = cv2.blur(img, (3, 3))  # Blur it
     saddle = getSaddle(blur_img)
     saddle = -saddle
@@ -375,6 +375,7 @@ def findChessboard(img, min_pts_needed=15, max_pts_needed=25):
         if num_good > max_pts_needed:
             break
 
+
     # If we found something
     if curr_num_good > min_pts_needed:
         final_ideal_grid = getIdentityGrid(2 + 2 * 7) - 7
@@ -407,7 +408,7 @@ def getBoardOutline(best_lines_x, best_lines_y, M):
 
 def processSingle(filename='input/img_10.png'):
     img = loadImage(filename)
-    M, ideal_grid, grid_next, grid_good, spts = findChessboard(img)
+    M, ideal_grid, grid_next, grid_good, spts = findCheckerBoard(img)
     print(M)
 
     # View
@@ -458,7 +459,7 @@ def main():
         print("Processing %d/%d : %s" % (i + 1, n, filename))
 
         img = loadImage(filename)
-        M, ideal_grid, grid_next, grid_good, spts = findChessboard(img)
+        M, ideal_grid, grid_next, grid_good, spts = findCheckerBoard(img)
 
         # View
         if M is not None:

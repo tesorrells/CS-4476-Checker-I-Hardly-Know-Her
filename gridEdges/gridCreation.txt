@@ -12,7 +12,7 @@ in createBoardGrid.py, but the final code used was much simpler for us to work i
 was implemented and worked in with our circle detection to provide two matrices of grid coordinates to feed to our checkers AI.
 
 Qualitative results:
-See folder 'gridEdges' for further output images
+See folder 'gridEdges' for board_points.png
 
 Conclusion and future work:
 While the edge detection and cross section comparison was good and worked well, it simply wasn't of practical use for us. Given boards

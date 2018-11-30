@@ -216,7 +216,7 @@ def getIdentityGrid(N):
     return np.vstack([aa.flatten(), bb.flatten()]).T
 
 
-def getChessGrid(quad):
+def getCheckersGrid(quad):
     quadA = np.array([[0, 1], [1, 1], [1, 0], [0, 0]], dtype=np.float32)
     M = cv2.getPerspectiveTransform(quadA, quad.astype(np.float32))
     quadB = getIdentityGrid(4) - 1
@@ -246,13 +246,13 @@ def findGoodPoints(grid, spts, max_px_dist=5):
     return new_grid, grid_good
 
 
-def getInitChessGrid(quad):
+def getInitCheckersGrid(quad):
     quadA = np.array([[0, 1], [1, 1], [1, 0], [0, 0]], dtype=np.float32)
     M = cv2.getPerspectiveTransform(quadA, quad.astype(np.float32))
-    return makeChessGrid(M, 1)
+    return makeCheckersGrid(M, 1)
 
 
-def makeChessGrid(M, N=1):
+def makeCheckersGrid(M, N=1):
     ideal_grid = getIdentityGrid(2 + 2 * N) - N
     ideal_grid_pad = np.pad(ideal_grid, ((0, 0), (0, 1)), 'constant', constant_values=1)  # Add 1's column
     # warped_pts = M*pts
@@ -348,10 +348,10 @@ def findCheckerBoard(img, min_pts_needed=15, max_pts_needed=25):
     for cnt_i in range(len(contours)):
         # print ("On Contour %d" % cnt_i)
         cnt = contours[cnt_i].squeeze()
-        grid_curr, ideal_grid, M = getInitChessGrid(cnt)
+        grid_curr, ideal_grid, M = getInitCheckersGrid(cnt)
 
         for grid_i in range(7):
-            grid_curr, ideal_grid, _ = makeChessGrid(M, N=(grid_i + 1))
+            grid_curr, ideal_grid, _ = makeCheckersGrid(M, N=(grid_i + 1))
             grid_next, grid_good = findGoodPoints(grid_curr, spts)
             num_good = np.sum(grid_good)
             if num_good < 4:

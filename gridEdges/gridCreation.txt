@@ -1,0 +1,21 @@
+Approach:
+1. Detect the corners of each tile
+2. Use these coordinates to compare to the centers of the circles from our piece detection
+3. If the center was less than both the X and Y values it would be placed in the square to the top-left of the point
+4. Use this for both black and red pieces
+5. return the black and red grid coordinates for the AI
+
+Experiments and Results:
+Detecting the corners took some time and was fairly in depth, but once we realized that the corrected images we were using would always be
+500 x 500 pixels we decided to go with some hard and fast valuse instead to save on computing power and time. You can see the points detection
+in createBoardGrid.py, but the final code used was much simpler for us to work in, and that is in circlesToGrid.py. The algoritm above
+was implemented and worked in with our circle detection to provide two matrices of grid coordinates to feed to our checkers AI.
+
+Qualitative results:
+See folder 'gridEdges' for board_points.png
+
+Conclusion and future work:
+While the edge detection and cross section comparison was good and worked well, it simply wasn't of practical use for us. Given boards
+of varying sizes and pictures that are not the same dimensions it would have proven a valuable asset, but due to time constraints, the 
+version we settled on works as intended. Future work could include a better way to determine if the detected circle is too large and 
+belongs in an adjacent square. 

@@ -27,5 +27,11 @@ def pixelToCheckerboard(red, black):
             if (black[i][1] > delineation[d]) and (black[i][1] < delineation[d + 1]):
                 black_out_y.append(d)
 
-    print("")
+    red_out = zip(red_out_x, red_out_y)
+    black_out = zip(black_out_x, black_out_y)
+
+    red_out_1 = list(set(red_out))
+    black_out_1 = list(set(black_out))
+
+    return red_out_1, black_out_1
 

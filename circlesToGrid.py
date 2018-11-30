@@ -27,6 +27,8 @@ def buildBoard(redCenters, blackCenters):
 
 	x = 1;
 	y = 1;
+	
+	currentPos = [62.5, 62.5]
 
 	while y <= 8:
 		while x <= 8:

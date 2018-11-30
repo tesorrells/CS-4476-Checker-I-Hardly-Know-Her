@@ -1,41 +1,40 @@
-# Use with detectCricles.py
-
-import cv2
-import numpy as np
-from glob import glob
-
 def buildBoard(redCenters, blackCenters):
-	print("Building Grid")
-	value = np.empty((), dtype=object)
-	value[()] = (0, 0)
-	boardGrid = np.full((8, 8), value, dtype=object)
-	circleGrid = np.full((8, 8), 0, dtype=object)
+	currentPos = [62, 62]
+	redPositions = []
+	blackPositions = []
 
-	i = 1
-	j = 1
-	for space in boardGrid:
-		while i < 9:
-			while j < 9:
-				boardGrid[i-1, j-1] = [int(62 * i), int(62 * j)]
-				j += 1
-			i += 1
-			j = 1
+	x = 1;
+	y = 1;
 
-	#print(boardGrid)
+	while x <= 8:
+		x += 1
+		while y <= 8:
+			y += 1
+			for red in redCenters:
+				if red[0] < currentPos[0] and red[1] < currentPos[1]:
+					redPositions.append([x , y ])
+					redCenters.remove(red)
+				else:
+					currentPos = [62 * x, 62 * y]
+		y = 1
 
-	for index, space in enumerate(boardGrid):
-		for red in redCenters:
-			redX = abs(red[0] - space[index][0])
-			redY = abs(red[1] - space[index][1])
-			if redX <= 30 and redY <= 30:
-				circleGrid[index] = 1
-				redCenters.remove(red)
-		for black in blackCenters:
-			blackX = abs(black[0] - space[index][0])
-			blackY = abs(black[1] - space[index][1])
-			if blackX <= 30 and blackY <= 30:
-				circleGrid[index[0][1]] = 2
-				blackCenters.remove(black)
+	currentPos = [62, 62]
 
-	print(circleGrid)
-	return circleGrid
+	x = 1;
+	y = 1;
+
+	while x <= 8:
+		x += 1
+		while y <= 8:
+			y += 1
+			for black in blackCenters:
+				if black[0] < currentPos[0] and black[1] < currentPos[1]:
+					blackPositions.append([x, y])
+					blackCenters.remove(black)
+				else:
+					currentPos = [62 * x, 62 * y]
+		y = 1
+
+	print(redPositions)
+	print(blackPositions)
+	return redPositions, blackPositions

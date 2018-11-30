@@ -71,4 +71,4 @@ def detectCirclesImages(image, showImage = True, rectangle = False):
 		cv2.destroyAllWindows()
 	return redCenters, blackCenters
 
-detectCircles("board.png", True, True)
+#detectCircles("board.png", True, True)

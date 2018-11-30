@@ -1,6 +1,5 @@
 from detectBoard import detectBoard
 from detectCircles import detectCirclesImages
-# from circlesToGrid import buildBoard
 from SingleMove import SingleMove
 from pixelToCheckerboard import pixelToCheckerboard
 import cv2
@@ -36,12 +35,19 @@ normalized_board = detectBoard(image)
 # cv2.waitKey(0)
 red, black = detectCirclesImages(normalized_board, True, False)
 red, black = pixelToCheckerboard(red, black)
-for i in red: 
-	i = list(i)
-	i.append(False)
-for i in black: 
-	i = list(i)
-	i.append(False)
-red = np.array(red)
-black = np.array(black)
+for i in range(len(red)): 
+	# red[i] = (red[i][0], red[i][1], False)
+	# i = (i[0], i[1], False)
+	# i.append(False)
+	a = red[i]
+	red[i] = (a[0], a[1], False)
+for i in range(len(black)): 
+	# black[i] = (black[i][0], black[i][1], False)
+	# i.append(False)
+	a = black[i]
+	black[i] = (a[0], a[1], False)
+red = np.array([red])
+black = np.array([black])
+print(red)
+print(black)
 checkers = SingleMove(red, "red", black, "black")
